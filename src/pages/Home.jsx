@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaArrowRight } from 'react-icons/fa'
 import HighlightText from '../components/core/HomePage/HighlightText'
-import CTAButton from '../components/core/HomePage/Button'
+// import CTAButton from '../components/core/HomePage/Button'
+import Button from '../components/core/HomePage/Button'
 import Banner from "../assets/Images/banner.mp4"
 import CodeBlocks from '../components/core/HomePage/CodeBlocks'
 const Home = () => {
@@ -35,11 +36,11 @@ const Home = () => {
         </div>
 
         <div className='flex flez-row gap-7 mt-8'>
-          <CTAButton active={true}  Linkto = {"/signup"}>Learn More</CTAButton>
-          <CTAButton active={false}  Linkto = {"/login"}>Book a Demo</CTAButton>
+          <Button active={true}  linkto = {"/signup"}>Learn More</Button>
+          <Button active={false}  linkto = {"/login"}>Book a Demo</Button>
         </div>
 
-        <div className='shadow-blue-200 mx-3 my-12 '>
+        <div className='shadow-blue-200 mx-9 my-9 '>
           <video muted loop autoPlay>
             <source src={Banner} type='video/mp4' />
           </video>
@@ -52,7 +53,7 @@ const Home = () => {
             heading={
               <div className='text-4xl font-semibold'>
                 Unlock Your
-                <HighlightText text={" Coding Potential "} />
+                <HighlightText text={" Coding Potential "} /><br/>
                 with our online courses
               </div>
             }
@@ -86,7 +87,7 @@ const Home = () => {
             heading={
               <div className='text-4xl font-semibold'>
                 Unlock Your
-                <HighlightText text={" Coding Potential "} />
+                <HighlightText text={" Coding Potential "} /><br/>
                 with our online courses
               </div>
             }
