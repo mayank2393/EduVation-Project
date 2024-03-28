@@ -135,7 +135,7 @@ const Home = () => {
                   </Button>
 
                   <Button active={false} linkto={"/signup"}>
-                    <div className=''>
+                    <div>
                       Learn More
                     </div>
                   </Button>

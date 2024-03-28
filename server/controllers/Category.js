@@ -41,7 +41,7 @@ exports.showAllCategories = async (req, res) => {
 			message: error.message,
 		});
 	}
-};
+}
 
 //categoryPageDetails 
 
