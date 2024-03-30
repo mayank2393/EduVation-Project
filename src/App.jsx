@@ -11,6 +11,10 @@ import UpdatePassword from "./pages/UpdatePassword";
 import VerifyEmail from "./pages/VerifyEmail";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import MyProfile from "./components/core/Dashboard/MyProfile";
+import Dashboard from "./pages/Dashboard";
+import Error from "./pages/Error";
+import Settings from "./components/core/Dashboard/Settings";
 
 function App() {
   return (
@@ -19,7 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
-          path="signup"
+          path="/signup"
           element={
             <OpenRoute>
               <Signup />
@@ -27,7 +31,7 @@ function App() {
           }
         />
         <Route
-          path="login"
+          path="/login"
           element={
             <OpenRoute>
               <Login />
@@ -36,7 +40,7 @@ function App() {
         />
 
         <Route
-          path="forgot-password"
+          path="/forgot-password"
           element={
             <OpenRoute>
               <ForgotPassword />
@@ -45,7 +49,7 @@ function App() {
         />
 
         <Route
-          path="update-password/:id"
+          path="/update-password/:id"
           element={
             <OpenRoute>
               <UpdatePassword />
@@ -53,7 +57,7 @@ function App() {
           }
         />
         <Route
-          path="verify-email"
+          path="/verify-email"
           element={
             <OpenRoute>
               <VerifyEmail />
@@ -61,16 +65,22 @@ function App() {
           }
         />
 
-        <Route
-          path="about"
-          element={
-            <OpenRoute>
-              <About />
-            </OpenRoute>
-          }
-        />
+        <Route path="/about" element={<About />} />
 
         <Route path="/contact" element={<Contact />} />
+
+        <Route
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        >
+          <Route path="/dashboard/my-profile" element={<MyProfile />} />
+          <Route path="dashboard/Settings" element={<Settings />} />
+        </Route>
+
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
   );

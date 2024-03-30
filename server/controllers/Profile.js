@@ -1,19 +1,22 @@
 const Profile = require("../models/Profile");
 const User = require("../models/User");
 const { uploadImageToCloudinary } = require("../utils/imageUploader");
-
+// Method for updating a profile
 exports.updateProfile = async (req, res) => {
     try {
         const { dateOfBirth = "", about = "", contactNumber } = req.body;
         const id = req.user.id;
 
+        // Find the profile by id
         const userDetails = await User.findById(id);
         const profile = await Profile.findById(userDetails.additionalDetails);
 
+        // Update the profile fields
         profile.dateOfBirth = dateOfBirth;
         profile.about = about;
         profile.contactNumber = contactNumber;
 
+        // Save the updated profile
         await profile.save();
 
         return res.json({
@@ -32,9 +35,14 @@ exports.updateProfile = async (req, res) => {
 
 exports.deleteAccount = async (req, res) => {
     try {
+        // TODO: Find More on Job Schedule
+        // const job = schedule.scheduleJob("10 * * * * *", function () {
+        // 	console.log("The answer to life, the universe, and everything!");
+        // });
+        // console.log(job);
         console.log("Printing ID: ", req.user.id);
         const id = req.user.id;
-        
+
         const user = await User.findById({ _id: id });
         if (!user) {
             return res.status(404).json({
@@ -42,9 +50,10 @@ exports.deleteAccount = async (req, res) => {
                 message: "User not found",
             });
         }
-
+        // Delete Assosiated Profile with the User
         await Profile.findByIdAndDelete({ _id: user.additionalDetails });
-
+        // TODO: Unenroll User From All the Enrolled Courses
+        // Now Delete User
         await User.findByIdAndDelete({ _id: id });
         res.status(200).json({
             success: true,
@@ -52,7 +61,7 @@ exports.deleteAccount = async (req, res) => {
         });
     } catch (error) {
         console.log(error);
-        return res
+        res
             .status(500)
             .json({ success: false, message: "User Cannot be deleted successfully" });
     }
@@ -79,7 +88,7 @@ exports.getAllUserDetails = async (req, res) => {
 };
 
 exports.updateDisplayPicture = async (req, res) => {
-    try{
+    try {
         const displayPicture = req.files.displayPicture
         const userId = req.user.id
         const image = await uploadImageToCloudinary(
@@ -106,7 +115,7 @@ exports.updateDisplayPicture = async (req, res) => {
         })
     }
 };
-  
+
 exports.getEnrolledCourses = async (req, res) => {
     try {
         const userId = req.user.id

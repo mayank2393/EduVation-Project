@@ -31,6 +31,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    // console.log("printing token " , token);
     fetchSublinks();
   }, []);
 
