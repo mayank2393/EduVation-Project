@@ -13,7 +13,7 @@ const {
 } = settingsEndpoints;
 
 export function updateDisplayPicture(token, formData) {
-  console.log("token", token)
+  // console.log("token", token)
   return async (dispatch) => {
     const toastId = toast.loading("Loading...");
     try {
@@ -23,7 +23,7 @@ export function updateDisplayPicture(token, formData) {
         formData,
         {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
+          Authorisation: `Bearer ${token}`,
         }
       );
       console.log(
@@ -49,16 +49,28 @@ export function updateProfile(token, formData) {
     const toastId = toast.loading("Loading...");
     try {
       const response = await apiConnector("PUT", UPDATE_PROFILE_API, formData, {
-        Authorization: `Bearer ${token}`,
+        Authorisation: `Bearer ${token}`,
       });
       console.log("UPDATE_PROFILE_API API RESPONSE............", response);
+
+      console.log("form data " + formData);
+      console.log(
+        "response.data.updatedUserDetails",
+        response.data.updatedUserDetails
+      );
+      console.log(
+        "response.data.updatedUserDetails.image",
+        response.data.updatedUserDetails.image
+      );
 
       if (!response.data.success) {
         throw new Error(response.data.message);
       }
+
       const userImage = response.data.updatedUserDetails.image
         ? response.data.updatedUserDetails.image
         : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.updatedUserDetails.firstName} ${response.data.updatedUserDetails.lastName}`;
+
       dispatch(
         setUser({ ...response.data.updatedUserDetails, image: userImage })
       );
@@ -75,7 +87,7 @@ export async function changePassword(token, formData) {
   const toastId = toast.loading("Loading...");
   try {
     const response = await apiConnector("POST", CHANGE_PASSWORD_API, formData, {
-      Authorization: `Bearer ${token}`,
+      Authorisation: `Bearer ${token}`,
     });
     console.log("CHANGE_PASSWORD_API API RESPONSE............", response);
 
@@ -95,7 +107,7 @@ export function deleteProfile(token, navigate) {
     const toastId = toast.loading("Loading...");
     try {
       const response = await apiConnector("DELETE", DELETE_PROFILE_API, null, {
-        Authorization: `Bearer ${token}`,
+        Authorisation: `Bearer ${token}`,
       });
       console.log("DELETE_PROFILE_API API RESPONSE............", response);
 
