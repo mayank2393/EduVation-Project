@@ -23,7 +23,7 @@ export function updateDisplayPicture(token, formData) {
         formData,
         {
           "Content-Type": "multipart/form-data",
-          Authorisation: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         }
       );
       console.log(
@@ -37,7 +37,10 @@ export function updateDisplayPicture(token, formData) {
       toast.success("Display Picture Updated Successfully");
       dispatch(setUser(response.data.data));
     } catch (error) {
-      console.log("UPDATE_DISPLAY_PICTURE_API API ERROR............", error.message);
+      console.log(
+        "UPDATE_DISPLAY_PICTURE_API API ERROR............",
+        error.message
+      );
       toast.error("Could Not Update Display Picture");
     }
     toast.dismiss(toastId);
@@ -49,7 +52,7 @@ export function updateProfile(token, formData) {
     const toastId = toast.loading("Loading...");
     try {
       const response = await apiConnector("PUT", UPDATE_PROFILE_API, formData, {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       });
       console.log("UPDATE_PROFILE_API API RESPONSE............", response);
 
@@ -87,7 +90,7 @@ export async function changePassword(token, formData) {
   const toastId = toast.loading("Loading...");
   try {
     const response = await apiConnector("POST", CHANGE_PASSWORD_API, formData, {
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     });
     console.log("CHANGE_PASSWORD_API API RESPONSE............", response);
 
@@ -107,7 +110,7 @@ export function deleteProfile(token, navigate) {
     const toastId = toast.loading("Loading...");
     try {
       const response = await apiConnector("DELETE", DELETE_PROFILE_API, null, {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       });
       console.log("DELETE_PROFILE_API API RESPONSE............", response);
 

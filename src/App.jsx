@@ -1,26 +1,29 @@
-import "./App.css";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import Home from "./pages/Home";
+import "./App.css";
 import Navbar from "./components/common/Navbar";
 import OpenRoute from "./components/core/Auth/OpenRoute";
+import Home from "./pages/Home";
 
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import ForgotPassword from "./pages/ForgotPassword";
-import UpdatePassword from "./pages/UpdatePassword";
-import VerifyEmail from "./pages/VerifyEmail";
+import { useDispatch, useSelector } from "react-redux";
+import PrivateRoute from "./components/core/Auth/PrivateRoute";
+import AddCourse from "./components/core/Dashboard/AddCourse";
+import Cart from "./components/core/Dashboard/Cart";
+import EditCourse from "./components/core/Dashboard/EditCourse";
+import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
+import MyCourses from "./components/core/Dashboard/MyCourses";
+import MyProfile from "./components/core/Dashboard/MyProfile";
+import Settings from "./components/core/Dashboard/Settings";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import MyProfile from "./components/core/Dashboard/MyProfile";
 import Dashboard from "./pages/Dashboard";
-import PrivateRoute from "./components/core/Auth/PrivateRoute";
 import Error from "./pages/Error";
-import Settings from "./components/core/Dashboard/Settings";
-import { useDispatch, useSelector } from "react-redux";
-import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
-import Cart from "./components/core/Dashboard/Cart";
+import ForgotPassword from "./pages/ForgotPassword";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import UpdatePassword from "./pages/UpdatePassword";
+import VerifyEmail from "./pages/VerifyEmail";
 import { ACCOUNT_TYPE } from "./utils/constants";
-import AddCourse from "./components/core/Dashboard/AddCourse";
+import Catalog from "./pages/Catalog";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +36,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/catalog/:catalogName" element={<Catalog/>} />
         <Route
           path="signup"
           element={
@@ -77,13 +81,7 @@ function App() {
           }
         />
 
-        <Route
-          path="about"
-          element={
-              <About />
-
-          }
-        />
+        <Route path="about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
 
         <Route
@@ -109,6 +107,11 @@ function App() {
           {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
             <>
               <Route path="dashboard/add-course" element={<AddCourse />} />
+              <Route path="dashboard/my-courses" element={<MyCourses />} />
+              <Route
+                path="dashboard/edit-course/:courseId"
+                element={<EditCourse />}
+              />
             </>
           )}
         </Route>

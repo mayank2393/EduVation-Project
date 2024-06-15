@@ -149,7 +149,7 @@ const SubSectionModal = ({
               id="lectureTitle"
               placeholder="Enter Lecture Title"
               {...register("lectureTitle", { required: true })}
-              className="w-full"
+              className="form-style w-full"
             />
             {errors.lectureTitle && <span>Lecture Title is required</span>}
           </div>
@@ -159,7 +159,7 @@ const SubSectionModal = ({
               id="lectureDesc"
               placeholder="Enter Lecture Description"
               {...register("lectureDesc", { required: true })}
-              className="w-full min-h-[130px]"
+              className="form-style w-full min-h-[130px]"
             />
             {errors.lectureDesc && <span>Lecture Description is required</span>}
           </div>

@@ -21,11 +21,12 @@ const NestedView = ({ handleChangeEditSectionName }) => {
   const [addSubSection, setAddSubSection] = useState(null);
   const [viewSubSection, setViewSubSection] = useState(null);
   const [editSubSection, setEditSubSection] = useState(null);
-
   const [confirmationModal, setConfirmationModal] = useState(null);
-  useEffect(() => {
-    console.log("REndering it again");
-  });
+  
+  // useEffect(() => {
+  //   console.log("REndering it again");
+  // });
+  
   const handleDeleteSection = async (sectionId) => {
     const result = await deleteSection(
       {
@@ -105,7 +106,7 @@ const NestedView = ({ handleChangeEditSectionName }) => {
                     <p>{data.title}</p>
                   </div>
 
-                  <div className="flex items-center gap-x-3">
+                  <div onClick={(e)=>e.stopPropagation()} className="flex items-center gap-x-3">
                     <button
                       onClick={() =>
                         setEditSubSection({ ...data, sectionId: section._id })
