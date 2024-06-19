@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BiInfoCircle } from "react-icons/bi";
 import { HiOutlineGlobeAlt } from "react-icons/hi";
 // import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import Markdown from "react-markdown";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -17,7 +18,7 @@ import GetAvgRating from "../utils/avgRating";
 import Error from "./Error";
 
 function CourseDetails() {
-  const { user } = useSelector((state) => state.profile); 
+  const { user } = useSelector((state) => state.profile);
   const { token } = useSelector((state) => state.auth);
   const { loading } = useSelector((state) => state.profile);
   const { paymentLoading } = useSelector((state) => state.course);
@@ -71,7 +72,7 @@ function CourseDetails() {
   useEffect(() => {
     let lectures = 0;
     response?.data?.courseDetails?.courseContent?.forEach((sec) => {
-      lectures += sec.subSection?.length || 0;
+      lectures += sec.subSection.length || 0;
     });
     setTotalNoOfLectures(lectures);
   }, [response]);
@@ -97,7 +98,7 @@ function CourseDetails() {
     courseContent,
     ratingAndReviews,
     instructor,
-    studentsEnroled,
+    studentsEnrolled,
     createdAt,
   } = response.data?.courseDetails;
 
@@ -151,8 +152,8 @@ function CourseDetails() {
               <div className="text-md flex flex-wrap items-center gap-2">
                 <span className="text-yellow-25">{avgReviewCount}</span>
                 <RatingStars Review_Count={avgReviewCount} Star_Size={24} />
-                <span>{`(${ratingAndReviews?.length} reviews)`}</span>
-                <span>{`${studentsEnroled?.length} students enrolled`}</span>
+                <span>{`(${ratingAndReviews.length} reviews)`}</span>
+                <span>{`${studentsEnrolled.length} students enrolled`}</span>
               </div>
               <div>
                 <p className="">
@@ -170,19 +171,14 @@ function CourseDetails() {
                 </p>
               </div>
             </div>
-            <div className="flex w-full flex-col gap-4 border-y border-y-richblack-500 py-4 lg:hidden">
-              <p className="space-x-3 pb-4 text-3xl font-semibold text-richblack-5">
+            <div className="flex w-full flex-col gap-4 border-y border-y-richblack-500 py-4 lg:hidden text-white">
+              <p className="space-x-3 pb-4 text-3xl font-semibold text-white">
                 Rs. {price}
               </p>
-              <button
-                className="yellowButton rounded-md p-2"
-                onClick={handleBuyCourse}
-              >
+              <button className="yellowButton p-4" onClick={handleBuyCourse}>
                 Buy Now
               </button>
-              <button className="blackButton rounded-md p-2">
-                Add to Cart
-              </button>
+              <button className="blackButton p-4">Add to Cart</button>
             </div>
           </div>
           {/* Courses Card */}
@@ -201,8 +197,7 @@ function CourseDetails() {
           <div className="my-8 border border-richblack-600 p-8">
             <p className="text-3xl font-semibold">What you'll learn</p>
             <div className="mt-5">
-              {/* <ReactMarkdown>{whatYouWillLearn}</ReactMarkdown> */}
-              {whatYouWillLearn}
+              <Markdown>{whatYouWillLearn}</Markdown>
             </div>
           </div>
 
@@ -213,7 +208,7 @@ function CourseDetails() {
               <div className="flex flex-wrap justify-between gap-2">
                 <div className="flex gap-2">
                   <span>
-                    {courseContent?.length} {`section(s)`}
+                    {courseContent.length} {`section(s)`}
                   </span>
                   <span>
                     {totalNoOfLectures} {`lecture(s)`}
