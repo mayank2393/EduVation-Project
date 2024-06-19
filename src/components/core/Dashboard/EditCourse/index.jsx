@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { RxCross2 } from "react-icons/rx";
 
 import {
   fetchCourseDetails,
@@ -9,8 +10,10 @@ import {
 import { setCourse, setEditCourse } from "../../../../slices/courseSlice";
 import RenderSteps from "../AddCourse/RenderSteps";
 
+
 export default function EditCourse() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { courseId } = useParams();
   const { course } = useSelector((state) => state.course);
   const [loading, setLoading] = useState(false);
@@ -39,9 +42,16 @@ export default function EditCourse() {
 
   return (
     <div>
-      <h1 className="mb-14 text-3xl font-medium text-richblack-5">
-        Edit Course
-      </h1>
+      <div className="flex flex-row justify-around items mb-14">
+        <h1 className=" text-5xl text-richblack-5 object-fit">Edit Course</h1>
+        <button className="object-fit">
+          <RxCross2
+            className="text-5xl text-richblack-5"
+            onClick={() => navigate("/dashboard/my-courses")}
+          />
+        </button>
+      </div>
+
       <div className="mx-auto max-w-[600px]">
         {course ? (
           <RenderSteps />

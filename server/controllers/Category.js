@@ -1,5 +1,7 @@
 const Category = require("../models/Category");
-
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max)
+}
 exports.createCategory = async (req, res) => {
     try {
         const { name, description } = req.body;
@@ -51,6 +53,9 @@ exports.categoryPageDetails = async (req, res) => {
         const selectedCategory = await Category.findById(categoryId)
             .populate({
                 path: "courses",
+                populate : {
+                    path: "instructor"
+                },
                 match: { status: "Published" },
                 populate: "ratingAndReviews",
             })
@@ -83,6 +88,9 @@ exports.categoryPageDetails = async (req, res) => {
         )
             .populate({
                 path: "courses",
+                populate: {
+                    path: "instructor"
+                },
                 match: { status: "Published" },
             })
             .exec()
@@ -91,6 +99,9 @@ exports.categoryPageDetails = async (req, res) => {
         const allCategories = await Category.find()
             .populate({
                 path: "courses",
+                populate: {
+                    path: "instructor"
+                },
                 match: { status: "Published" },
             })
             .exec()
