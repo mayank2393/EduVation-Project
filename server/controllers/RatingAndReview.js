@@ -129,6 +129,7 @@ exports.getAllRating = async (req, res) => {
             .populate({
                 path: "course",
                 select: "courseName",
+                select: "thumbnail",
             })
             .exec();
         return res.status(200).json({

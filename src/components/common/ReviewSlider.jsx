@@ -35,7 +35,7 @@ function ReviewSlider() {
 
   return (
     <div className="w-[100%] h-[100%]">
-      <div className="my-[50px] h-[250px] max-w-maxContentTab lg:max-w-maxContent">
+      <div className="my-[50px] h-[300px] max-w-maxContentTab lg:max-w-maxContent">
         <Swiper
           slidesPerView={4}
           spaceBetween={30}
@@ -68,14 +68,18 @@ function ReviewSlider() {
                     </h2>
                   </div>
                 </div>
-                <p className="font-medium text-richblack-25 flex-grow">
-                  {review?.review.split(" ").length > truncateWords
-                    ? `${review?.review
-                        .split(" ")
-                        .slice(0, truncateWords)
-                        .join(" ")} ...`
-                    : `${review?.review}`}
-                </p>
+                <div className="flex flex-col gap-2">
+                  <p className="font-medium text-richblack-25">
+                    {review?.review.split(" ").length > truncateWords
+                      ? `${review?.review
+                          .split(" ")
+                          .slice(0, truncateWords)
+                          .join(" ")} ...`
+                      : `${review?.review}`}
+                  </p>
+                    <img src={review?.course?.thumbnail} className="h-[150px]" />
+                </div>
+
                 <div className="flex items-center gap-2">
                   <h3 className="font-semibold text-yellow-100">
                     {review.rating.toFixed(1)}
