@@ -52,7 +52,10 @@ const userSchema = new mongoose.Schema(
 				ref: "Course",
 			},
 		],
-		token: {
+		accessToken: {
+			type: String,
+		},
+		refreshToken: {
 			type: String,
 		},
 		resetPasswordExpires: {

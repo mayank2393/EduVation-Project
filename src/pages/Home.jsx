@@ -3,7 +3,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 // Image and Video Import
-import Banner from "../assets/Images/banner.mp4";
+import teachify from "../assets/gifs/teachify.gif";
 // Component Imports
 import Footer from "../components/common/Footer";
 import ReviewSlider from "../components/common/ReviewSlider";
@@ -56,14 +56,11 @@ function Home() {
 
         {/* Video */}
         <div className="mx-3 my-7 shadow-[10px_-5px_50px_-5px] shadow-blue-200">
-          <video
-            className="shadow-[20px_20px_rgba(255,255,255)]"
-            muted
-            loop
-            autoPlay
-          >
-            <source src={Banner} type="video/mp4" />
-          </video>
+          <img
+            src={teachify}
+            alt="Banner"
+            className="shadow-[20px_20px_rgba(241,249,101,0.8)]"
+          />
         </div>
 
         {/* Code Section 1  */}
@@ -158,9 +155,8 @@ function Home() {
             </div>
             <div className="flex flex-col items-start gap-10 lg:w-[40%]">
               <div className="text-[16px]">
-                The modern StudyNotion is the dictates its own terms. Today, to
-                be a competitive specialist requires more than professional
-                skills.
+                The modern EduVation is the dictates its own terms. Today, to be
+                a competitive specialist requires more than professional skills.
               </div>
               <CTAButton active={true} linkto={"/signup"}>
                 <div className="">Learn More</div>

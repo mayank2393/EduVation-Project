@@ -98,7 +98,7 @@ export function login(email, password, navigate) {
       if (!response.data.success) {
         throw new Error(response.data.message);
       }
-
+      
       toast.success("Login Successful");
       dispatch(setToken(response.data.token));
       const userImage = response.data?.user?.image
@@ -106,7 +106,7 @@ export function login(email, password, navigate) {
         : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`;
       dispatch(setUser({ ...response.data.user, image: userImage }));
       localStorage.setItem("user", JSON.stringify(response.data.user)); // now even after refreshing screen data will be there due to local storage
-      localStorage.setItem("token", JSON.stringify(response.data.token)); // now even after refreshing screen data will be there due to local storage
+      localStorage.setItem("refreshToken", JSON.stringify(response.data.refreshToken)); // now even after refreshing screen data will be there due to local storage
       navigate("/dashboard/my-profile");
     } catch (error) {
       console.log("LOGIN API ERROR............", error);

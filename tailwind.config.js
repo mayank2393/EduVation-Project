@@ -123,6 +123,7 @@ module.exports = {
         800: "#171717",
         900: "#141414",
       },
+      'custom-red': 'rgb(255, 0, 0)',
     },
     extend: {
       maxWidth: {

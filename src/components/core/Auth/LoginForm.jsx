@@ -78,11 +78,13 @@ function LoginForm() {
             <AiOutlineEye fontSize={24} fill="#AFB2BF" />
           )}
         </span>
+        <div className="mt-4 flex justify-end">
         <Link to="/forgot-password">
-          <p className="mt-1 ml-auto max-w-max text-xs text-blue-100">
+          <span className="mt-4 mx-auto max-w-max text-xs text-custom-red">
             Forgot Password
-          </p>
+          </span>
         </Link>
+        </div>
       </label>
       <button
         type="submit"

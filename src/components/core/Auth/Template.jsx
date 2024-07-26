@@ -26,14 +26,13 @@ function Template({ title, description1, description2, image, formType }) {
             </p>
             {formType === "signup" ? <SignupForm /> : <LoginForm />}
           </div>
-          <div className="relative mx-auto w-11/12 max-w-[450px] md:mx-0">
-            <img
+          <div className="relative mx-auto w-11/12 max-w-[600px] md:mx-0">
+            {/* <img
               src={frameImg}
               alt="Pattern"
-              width={558}
-              height={504}
+              height={540}
               loading="lazy"
-            />
+            /> */}
             <img
               src={image}
               alt="Students"
