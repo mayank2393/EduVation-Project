@@ -11,7 +11,6 @@ const { generateAccessToken, generateRefreshToken } = require("../middlewares/ge
 require("dotenv").config();
 
 // Signup Controller for Registering USers
-
 exports.signup = async (req, res) => {
 	try {
 		// Destructure fields from the request body
@@ -40,7 +39,7 @@ exports.signup = async (req, res) => {
 			});
 		}
 		// Check if password and confirm password match
-		if (password !== confirmPassword) {
+		if (password !== confirmPassword) { 
 			return res.status(400).json({
 				success: false,
 				message:
@@ -182,6 +181,7 @@ exports.login = async (req, res) => {
 		});
 	}
 };
+
 // Send OTP For Email Verification
 exports.sendotp = async (req, res) => {
 	try {

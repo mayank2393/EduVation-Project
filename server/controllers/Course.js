@@ -22,7 +22,7 @@ exports.createCourse = async (req, res) => {
 			tag: _tag,
 			category,
 			status,
-			instructions: _instructions,
+			instructions: _instructions,  
 		} = req.body
 		// Get thumbnail image from request files
 		const thumbnail = req.files.thumbnailImage

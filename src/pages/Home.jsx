@@ -70,7 +70,7 @@ function Home() {
             heading={
               <div className="text-4xl font-semibold">
                 Unlock your
-                <HighlightText text={" Coding Potential"} /> with our online
+                <HighlightText text={" True Potential"} /> with our online
                 courses.
               </div>
             }
@@ -100,7 +100,7 @@ function Home() {
             heading={
               <div className="w-[100%] text-4xl font-semibold lg:w-[50%]">
                 Start
-                <HighlightText text={" Coding in Seconds"} />
+                <HighlightText text={" Learning in Seconds"} />
               </div>
             }
             subheading={
